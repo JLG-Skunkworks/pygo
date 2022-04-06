@@ -71,6 +71,8 @@ extern "C" {
 
 extern void helloWorld();
 
+extern void jsonDict();
+
 #ifdef __cplusplus
 }
 #endif
