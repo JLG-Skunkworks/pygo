@@ -38,7 +38,7 @@ func jsonDict() {
 }
 
 //export jsonArray
-func jsonArray() string {
+func jsonArray() *C.char {
 	data := Employee{
 		FirstName: "Mark",
 		LastName:  "Jones",
@@ -67,7 +67,7 @@ func jsonArray() string {
 	binary.Write(buf, binary.BigEndian, file)
 	str := buf.String()
 	fmt.Println(str)
-	return str
+	return C.CString(str)
 }
 
 func main() {

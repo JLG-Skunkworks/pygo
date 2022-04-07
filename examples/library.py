@@ -8,4 +8,8 @@ jsonDict = library.jsonDict
 test = jsonDict()   
 
 library.jsonArray.restype = ctypes.c_char_p
-print(library.jsonArray())
+test = library.jsonArray().decode('utf8')
+json_string = json.dumps(test, ensure_ascii=False)
+print(type(json_string))
+json_dict = json.loads(test)
+print(json_dict)

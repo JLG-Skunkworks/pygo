@@ -73,7 +73,7 @@ extern void helloWorld();
 
 extern void jsonDict();
 
-extern GoString jsonArray();
+extern char* jsonArray();
 
 #ifdef __cplusplus
 }
