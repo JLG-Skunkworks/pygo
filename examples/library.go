@@ -5,6 +5,21 @@ import (
 	"encoding/json"
 	"log"
 )
+import (
+	"bytes"
+	"encoding/binary"
+	"fmt"
+)
+
+type Salary struct {
+	Basic, HRA, TA float64
+}
+
+type Employee struct {
+	FirstName, LastName, Email string
+	Age                        int
+	MonthlySalary              []Salary
+}
 
 //export helloWorld
 func helloWorld() {
@@ -20,6 +35,39 @@ func jsonDict() {
 	}
 	bytes, _ := json.Marshal(fileCount)
 	log.Println(string(bytes))
+}
+
+//export jsonArray
+func jsonArray() string {
+	data := Employee{
+		FirstName: "Mark",
+		LastName:  "Jones",
+		Email:     "mark@gmail.com",
+		Age:       25,
+		MonthlySalary: []Salary{
+			Salary{
+				Basic: 15000.00,
+				HRA:   5000.00,
+				TA:    2000.00,
+			},
+			Salary{
+				Basic: 16000.00,
+				HRA:   5000.00,
+				TA:    2100.00,
+			},
+			Salary{
+				Basic: 17000.00,
+				HRA:   5000.00,
+				TA:    2200.00,
+			},
+		},
+	}
+	buf := new(bytes.Buffer)
+	file, _ := json.MarshalIndent(data, "", " ")
+	binary.Write(buf, binary.BigEndian, file)
+	str := buf.String()
+	fmt.Println(str)
+	return str
 }
 
 func main() {
